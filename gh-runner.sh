@@ -2,6 +2,7 @@
 
 # <UDF name="github_org" label="GitHub Org" />
 # <UDF name="runner_cfg_pat" label="GitHub Personal Token" />
+# <UDF name="runner_name" label="Runner Name" />
 
 set -x
 
@@ -23,4 +24,4 @@ su $USER
 cd /home/$USER
 
 # https://github.com/actions/runner/blob/main/docs/automate.md
-curl -s https://raw.githubusercontent.com/actions/runner/main/scripts/create-latest-svc.sh | bash -s -- -s ${GITHUB_ORG} -n linode-${LINODE_ID} -l ubuntu-latest
+curl -s https://raw.githubusercontent.com/actions/runner/main/scripts/create-latest-svc.sh | bash -s -- -s ${GITHUB_ORG} -n ${RUNNER_NAME} -l ubuntu-latest
