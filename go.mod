@@ -7,6 +7,7 @@ require (
 	github.com/linode/linodego v1.8.0
 	github.com/pkg/errors v0.9.1
 	golang.org/x/oauth2 v0.0.0-20220608161450-d0670ef3b1eb
+	gomodules.xyz/password-generator v0.2.8
 	gomodules.xyz/pointer v0.1.0
 	k8s.io/apimachinery v0.24.2
 	k8s.io/klog/v2 v2.70.0

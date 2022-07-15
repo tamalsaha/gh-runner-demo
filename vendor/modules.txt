@@ -39,6 +39,9 @@ golang.org/x/net/publicsuffix
 ## explicit; go 1.15
 golang.org/x/oauth2
 golang.org/x/oauth2/internal
+# gomodules.xyz/password-generator v0.2.8
+## explicit; go 1.15
+gomodules.xyz/password-generator
 # gomodules.xyz/pointer v0.1.0
 ## explicit; go 1.15
 gomodules.xyz/pointer
