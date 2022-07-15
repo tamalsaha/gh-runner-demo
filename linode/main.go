@@ -17,8 +17,8 @@ import (
 )
 
 const (
-	RetryInterval = 50 * time.Millisecond
-	RetryTimeout  = 2 * time.Second
+	RetryInterval = 30 * time.Second
+	RetryTimeout  = 3 * time.Minute
 )
 
 func main() {
@@ -151,18 +151,20 @@ func createInstance(c *linodego.Client, scriptID int) (int, error) {
 		authorizedKeys = append(authorizedKeys, r.SSHKey)
 	}
 
+	machineName := "gh-runner" + passgen.Generate(6)
+
 	rootPassword := passgen.Generate(20)
 	fmt.Println("rootPassword:", rootPassword)
 	createOpts := linodego.InstanceCreateOptions{
-		Label:          "ci-runner",
+		Label:          machineName,
 		Region:         "us-central",
 		Type:           "g6-nanode-1",
 		RootPass:       rootPassword,
 		AuthorizedKeys: authorizedKeys,
 		StackScriptData: map[string]string{
-			"GITHUB_TOKEN": os.Getenv("GITHUB_TOKEN"),
-			"GITHUB_ORG":   "gh-walker",
-			"RUNNER_NAME":  "ci-runner",
+			"runner_cfg_pat": os.Getenv("GITHUB_TOKEN"),
+			"github_org":     "gh-walker",
+			"runner_name":    machineName,
 		},
 		StackScriptID:  scriptID,
 		Image:          "linode/ubuntu20.04",
