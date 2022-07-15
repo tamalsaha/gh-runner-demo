@@ -3,11 +3,12 @@ package main
 import (
 	"context"
 	"fmt"
+	"net/http"
+	"os"
+
 	"github.com/linode/linodego"
 	"github.com/pkg/errors"
 	"golang.org/x/oauth2"
-	"net/http"
-	"os"
 )
 
 func main() {
