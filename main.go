@@ -11,11 +11,6 @@ import (
 )
 
 func main() {
-	l := NewLinodeClient()
-
-}
-
-func main_() {
 
 	u := os.Getenv("GITHUB_USER")
 	fmt.Println(u)
