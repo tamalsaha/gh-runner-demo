@@ -151,7 +151,7 @@ func createInstance(c *linodego.Client, scriptID int) (int, error) {
 		authorizedKeys = append(authorizedKeys, r.SSHKey)
 	}
 
-	machineName := "gh-runner" + passgen.Generate(6)
+	machineName := "gh-runner-" + passgen.Generate(6)
 
 	rootPassword := passgen.Generate(20)
 	fmt.Println("rootPassword:", rootPassword)
@@ -187,7 +187,7 @@ func createInstance(c *linodego.Client, scriptID int) (int, error) {
 
 func waitForStatus(c *linodego.Client, id int, status linodego.InstanceStatus) error {
 	attempt := 0
-	klog.Info("waiting for instance status", "status", status)
+	klog.Infoln("waiting for instance status", "status", status)
 	return wait.PollImmediate(RetryInterval, RetryTimeout, func() (bool, error) {
 		attempt++
 
@@ -198,9 +198,9 @@ func waitForStatus(c *linodego.Client, id int, status linodego.InstanceStatus) e
 		if instance == nil {
 			return false, nil
 		}
-		klog.Info("current instance state", "instance", instance.Label, "status", instance.Status, "attempt", attempt)
+		klog.Infoln("current instance state", "instance", instance.Label, "status", instance.Status, "attempt", attempt)
 		if instance.Status == status {
-			klog.Info("current instance status", "status", status)
+			klog.Infoln("current instance status", "status", status)
 			return true, nil
 		}
 		return false, nil
